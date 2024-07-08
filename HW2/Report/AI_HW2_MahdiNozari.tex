@@ -273,7 +273,7 @@
 	در
 	\autoref{fig:correlation2}
 	رسم شده است.\\
-		\begin{figure}[!h]
+	\begin{figure}[!h]
 		\centerline{\includegraphics[width=1\linewidth]{../HW2_2/CorrelationHeatmap.png}}
 		\caption{نمودار وابستگی داده‌ها}
 		\label{fig:correlation2}
@@ -380,6 +380,13 @@
 		\label{tab:skewness}
 	\end{table}
 	سپس مقادیر ناموجود با میانگین مقادیر جابه‌جا می‌شوند. همچنین از جایی که مقادیر منفی صحیح نمی‌باشند، به مقادیر منفی نیز مقادیر میانگین نسبت داده می‌شود تا دقت نهایی مدل بالا رود.\\
+	فرایند 
+	\lr{Normalize}
+	کردن داده‌ها بازه داده‌ها را به $[0,1]$ یا $[-1,1]$ تغییر می‌دهد و برای داده‌هایی به کار می‌روند که توزیع گاوسی ندارند. فرایند 
+	\lr{Standardize}
+	داده‌ها را به صورتی تغییر می‌دهد که میانگین داده‌ها صفر و انجراف معیار داده‌ها یک شود. از جایی که داده‌های به صورت کلی توزیع گاوسی ندارند داده‌ها را
+	\lr{Normalize}
+	می‌کنیم
 	\clearpage
 	\subsection{انتخاب، آموزش و ارزیابی مدل}
 	با تقسیم داده‌های به صورت ۸۰ ۲۰، مدل‌های زیر برای پیش‌بینی پیاده‌سازی شده‌اند. برای هر کدام از مدل‌ها دو پارامتر (برای \lr{KNN} یک پارامتر) به وسیله 
@@ -398,7 +405,7 @@
 				\begin{tabular}{|l|c|c|}
 					\hline
 					\textbf{Model} & \textbf{Test precision} & \textbf{Test accuracy} \\ \hline
-					Logistic Regression & 0.797497 & 3745.707 \\ \hline
+					Logistic Regression & 0.70454 & 0.75974 \\ \hline
 				\end{tabular}
 			\end{latin}
 			\label{tab:logisticregression_results}
@@ -421,7 +428,7 @@
 				\begin{tabular}{|l|c|c|}
 					\hline
 					\textbf{Model} & \textbf{Test precision} & \textbf{Test accuracy} \\ \hline
-					K Nearest Neighbor & 0.797497 & 3745.707 \\ \hline
+					K Nearest Neighbor & 0.65517 & 0.70129 \\ \hline
 				\end{tabular}
 			\end{latin}
 			\label{tab:knn_results}
@@ -445,7 +452,7 @@
 				\begin{tabular}{|l|c|c|}
 					\hline
 					\textbf{Model} & \textbf{Test precision} & \textbf{Test accuracy} \\ \hline
-					Decision Tree & 0.797497 & 3745.707 \\ \hline
+					Decision Tree & 0.66666 & 0.74675 \\ \hline
 				\end{tabular}
 			\end{latin}
 			\label{tab:decisiontree_results}
@@ -469,7 +476,7 @@
 				\begin{tabular}{|l|c|c|}
 					\hline
 					\textbf{Model} & \textbf{Test precision} & \textbf{Test accuracy} \\ \hline
-					Random Forest & 0.797497 & 3745.707 \\ \hline
+					Random Forest & 0.67272 & 0.76623 \\ \hline
 				\end{tabular}
 			\end{latin}
 			\label{tab:randomforest_results}
@@ -493,7 +500,7 @@
 				\begin{tabular}{|l|c|c|}
 					\hline
 					\textbf{Model} & \textbf{Test precision} & \textbf{Test accuracy} \\ \hline
-					Support Vector Machine & 0.797497 & 3745.707 \\ \hline
+					Support Vector Machine & 0.75609 & 0.77922 \\ \hline
 				\end{tabular}
 			\end{latin}
 			\label{tab:svm_results}
@@ -513,11 +520,11 @@
 			\begin{tabular}{|l|c|c|}
 				\hline
 				\textbf{Model} & \textbf{Test precision} & \textbf{Test accuracy} \\ \hline
-				Logistic Regression & 0.68888 & 0.75324 \\ \hline
-				K Nearest Neighbor & 0.64864 & 0.71428 \\ \hline
-				Decision Tree & 0.61403 & 0.72727 \\ \hline
-				Random Forest & 0.58490 & 0.70129 \\ \hline
-				Support Vector Machine & 0.797497 & 0.74025 \\ \hline
+				Logistic Regression & 0.70454 & 0.75974 \\ \hline
+				K Nearest Neighbor & 0.65517 & 0.70129 \\ \hline
+				Decision Tree & 0.66666 &  0.74675 \\ \hline
+				Random Forest & 0.67272 & 0.76623 \\ \hline
+				Support Vector Machine & 0.77922 & 0.75609 \\ \hline
 			\end{tabular}
 		\end{latin}
 		\label{tab:results2} 
@@ -527,7 +534,7 @@
 		از طرفی مدل‌
 		\lr{Random Forest}
 		یک مدل تجمیعی بوده هر کدام از درخت‌های بایاس پایین دارند اما تجمیع این درخت‌ها باعث بالا رفتن بایاس خواهد شد و نسبت به یک درخت تصمیم‌گیری بایاس بالاتری دارند. اما این افزایش کوچک بایاس نهایتا به همان علت تجمیع چندین درخت، واریانس را در آزمون پایین می‌آورند و مدل تعمیم‌پذیری بهتری خواهد داشت.\\
-		جدول زیر نتیجه بایاس و واریانس را برای این دو مدل در این مسئله نشان می‌دهد. در این قسمت بایاس در مدل \lr{Random Forest} به مقدار کمی کاهش یافته که طبق انتظار باید کمی افزایش پیدا می‌کرد. این موضوع احتمالا به علت پارامتر‌های دو مدل بوده که با هم همخوانی ندارند. اما طبق انتظار و استدلال قبلی، واریاس به صورت قابل توجهی کاهش یافته است.
+		جدول زیر نتیجه بایاس و واریانس را برای این دو مدل در این مسئله نشان می‌دهد. در این قسمت بایاس در مدل \lr{Random Forest} تغییر چندانی نکرده است که طبق انتظار باید همینطور بوده یا کمی افزایش پیدا می‌کرد. درباره واریانس طبق انتظار و استدلال قبلی، به صورت قابل توجهی کاهش یافته است.
 				\begin{table}[h!]
 		\caption{مقایسه بایاس و واریانس مدل‌های \lr{Decision Tree} و \lr{Random Forest}}
 		\begin{latin}
@@ -535,8 +542,8 @@
 			\begin{tabular}{|l|c|c|}
 				\hline
 				\textbf{Model} & \textbf{Bias} & \textbf{Variance} \\ \hline
-				Decision Tree & 0.2597 & 0.2206 \\ \hline
-				Random Forest & 0.2338 & 0.1063 \\ \hline
+				Decision Tree & 0.2597 & 0.2223 \\ \hline
+				Random Forest & 0.2532 & 0.1057 \\ \hline
 			\end{tabular}
 		\end{latin}
 		\label{tab:results3} 
